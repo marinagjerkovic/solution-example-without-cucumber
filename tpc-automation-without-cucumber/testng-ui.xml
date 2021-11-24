@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite" verbose="1" configfailurepolicy="continue">
+    <test name="UI Tests" >
+        <classes>
+            <class name="ui.tests.LoginTest" />
+            <class name="ui.tests.MyAccountTest" />
+        </classes>
+    </test>
+</suite>
