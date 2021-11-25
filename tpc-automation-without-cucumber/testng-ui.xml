@@ -3,7 +3,7 @@
 <suite name="Suite" verbose="1" configfailurepolicy="continue">
     <test name="UI Tests" >
         <classes>
-            <class name="ui.tests.LoginTest" />
+<!--            <class name="ui.tests.LoginTest" />-->
             <class name="ui.tests.MyAccountTest" />
         </classes>
     </test>

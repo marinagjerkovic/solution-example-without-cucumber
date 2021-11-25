@@ -16,7 +16,7 @@ public class MyAccountTest extends BaseTest {
     MyAccountPage myAccountPage;
     HeaderMenuPage headerMenuPage;
 
-    @BeforeMethod(groups = "UI")
+    @BeforeMethod
     public void load_pages_and_login() {
         authenticationPage = pageObjectManager.getAuthenticationPage();
         myAccountPage = pageObjectManager.getMyAccountPage();
@@ -32,7 +32,7 @@ public class MyAccountTest extends BaseTest {
         assertEquals(headerMenuPage.getMyAccountButton().getText(), Users.name + " " + Users.lastname_petar);
     }
 
-    @Test(groups = "UI")
+    @Test
     public void test_page_title_is_correct() {
         assertEquals(driver.getTitle(), "My account - My Store");
     }

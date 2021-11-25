@@ -23,7 +23,7 @@ public class BaseTest {
     WebDriverWait wait;
     PageObjectManager pageObjectManager;
 
-    @BeforeMethod(groups = "UI")
+    @BeforeMethod
     public void setup() {
         driver = WebDriverFactory.createWebDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -34,6 +34,7 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void teardown(ITestResult result) throws IOException {
+        System.out.println("after method ran even if method not annotated with group");
         if (result.getStatus() == ITestResult.FAILURE) {
             File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             File savedScreenshot = new File("target/screenshots/" + result.getTestClass().getRealClass().getSimpleName() + "/" + result.getMethod().getMethodName() + ".jpg");
