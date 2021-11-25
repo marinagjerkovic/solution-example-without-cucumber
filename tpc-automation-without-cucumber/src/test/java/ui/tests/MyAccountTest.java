@@ -16,7 +16,7 @@ public class MyAccountTest extends BaseTest {
     MyAccountPage myAccountPage;
     HeaderMenuPage headerMenuPage;
 
-    @BeforeMethod
+    @BeforeMethod(groups = "groupExample")
     public void load_pages_and_login() {
         authenticationPage = pageObjectManager.getAuthenticationPage();
         myAccountPage = pageObjectManager.getMyAccountPage();
@@ -27,7 +27,7 @@ public class MyAccountTest extends BaseTest {
         assertTrue(myAccountPage.wait_until_element_shown(myAccountPage.getMyAccountLabel()));
     }
 
-    @Test
+    @Test(groups = "groupExample")
     public void test_header_contains_users_name_and_lastname() {
         assertEquals(headerMenuPage.getMyAccountButton().getText(), Users.name + " " + Users.lastname_petar);
     }

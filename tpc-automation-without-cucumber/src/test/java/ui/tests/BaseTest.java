@@ -23,7 +23,7 @@ public class BaseTest {
     WebDriverWait wait;
     PageObjectManager pageObjectManager;
 
-    @BeforeMethod
+    @BeforeMethod(groups = "groupExample")
     public void setup() {
         driver = WebDriverFactory.createWebDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
