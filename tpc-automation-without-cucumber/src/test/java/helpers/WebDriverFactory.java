@@ -7,20 +7,29 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class WebDriverFactory {
+    public static void setupDriver() {
+        String browser = System.getProperty("browser");
+        switch (browser) {
+            case "edge":
+                WebDriverManager.edgedriver().setup();
+                break;
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                break;
+            default:
+                WebDriverManager.chromedriver().setup();
+        }
+    }
+
     public static WebDriver createWebDriver() {
         String browser = System.getProperty("browser");
         switch (browser) {
-            case "chrome":
-                WebDriverManager.chromedriver().setup();
-                return new ChromeDriver();
             case "edge":
-                WebDriverManager.edgedriver().setup();
                 return new EdgeDriver();
             case "firefox":
-                WebDriverManager.firefoxdriver().setup();
                 return new FirefoxDriver();
             default:
-                throw new RuntimeException("Unsupported webdriver: " + browser);
+                return new ChromeDriver();
         }
     }
 }

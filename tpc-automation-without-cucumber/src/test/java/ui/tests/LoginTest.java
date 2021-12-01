@@ -1,6 +1,7 @@
 package ui.tests;
 
 import data.Users;
+import helpers.Links;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -11,15 +12,13 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
-    private AuthenticationPage authenticationPage;
-    private MyAccountPage myAccountPage;
 
     @BeforeMethod
     public void load_pages_and_navigate_to_authentication_page() {
-        authenticationPage = pageObjectManager.getAuthenticationPage();
-        myAccountPage = pageObjectManager.getMyAccountPage();
+        authenticationPage = new AuthenticationPage(driver, wait);
+        myAccountPage = new MyAccountPage(driver, wait);
 
-        driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+        driver.get(Links.authenticationPage);
         assertTrue(authenticationPage.wait_until_element_shown(authenticationPage.getEmailFieldLogin()));
     }
 

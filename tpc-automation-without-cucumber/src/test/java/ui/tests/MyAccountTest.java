@@ -1,7 +1,7 @@
 package ui.tests;
 
 import data.Users;
-import helpers.PageObjectManager;
+import helpers.Links;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ui.pages.AuthenticationPage;
@@ -12,17 +12,14 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class MyAccountTest extends BaseTest {
-    AuthenticationPage authenticationPage;
-    MyAccountPage myAccountPage;
-    HeaderMenuPage headerMenuPage;
 
-    @BeforeMethod(groups = "groupExample")
+    @BeforeMethod(alwaysRun = true)
     public void load_pages_and_login() {
-        authenticationPage = pageObjectManager.getAuthenticationPage();
-        myAccountPage = pageObjectManager.getMyAccountPage();
-        headerMenuPage = pageObjectManager.getHeaderMenuPage();
+        authenticationPage = new AuthenticationPage(driver, wait);
+        myAccountPage = new MyAccountPage(driver, wait);
+        headerMenuPage = new HeaderMenuPage(driver, wait);
 
-        driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+        driver.get(Links.authenticationPage);
         authenticationPage.login(Users.valid_email, Users.valid_password);
         assertTrue(myAccountPage.wait_until_element_shown(myAccountPage.getMyAccountLabel()));
     }
